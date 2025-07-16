@@ -14,7 +14,11 @@ class TabIconData {
   bool isSelected;
   int index;
 
+<<<<<<< HEAD
   AnimationController animationController;
+=======
+  AnimationController? animationController;
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
 
   static List<TabIconData> tabIconsList = <TabIconData>[
     TabIconData(

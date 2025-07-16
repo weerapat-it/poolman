@@ -2,18 +2,32 @@ import 'package:flutter/material.dart';
 
 
 class Product {
+<<<<<<< HEAD
   final int user_id;
   final String user_Firstname,user_Address1,user_Address2,user_Tax;
+=======
+  final int payment_history_id,voucher_id;
+  final String datetime;
+  final int price,status;
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
   final List<String> images;
   // final double  width,height,depth;
 
 
   Product({
+<<<<<<< HEAD
     @required this.user_id,
     @required this.user_Firstname,
     @required this.user_Address1,
     @required this.user_Address2,
     @required this.user_Tax,
+=======
+    @required this.payment_history_id,
+    @required this.voucher_id,
+    @required this.price,
+    @required this.status,
+    @required this.datetime,
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
     @required this.images,
 
     // @required this.title,
@@ -28,7 +42,11 @@ class Product {
 
 // Our demo Products
 
+<<<<<<< HEAD
 List<Product> demoProductsAddress = [
+=======
+List<Product> demoProducts = [
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
   // Product(
   //   id: 1,
   //   images: [

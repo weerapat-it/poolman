@@ -20,8 +20,13 @@ import 'dart:async';
 import 'package:flutter_session/flutter_session.dart';
 class Body extends StatefulWidget {
   final Product product;
+<<<<<<< HEAD
   final int item;
   const Body({Key key, @required this.product, @required this.item}) : super(key: key);
+=======
+
+  const Body({Key key, @required this.product}) : super(key: key);
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
 
   @override
   _Body createState() => new _Body();
@@ -40,18 +45,26 @@ class _Body extends State<Body> {
     return userId;
   }
   int qty = 1;
+<<<<<<< HEAD
 
   getPostToCart() async {
     // String Url = "http://jdpoolswebservice.com/spintest/addItemToCart.php";
     var url = Uri.https('jdpoolswebservice.com', '/spintest/addItemToCart.php', {'q': '{http}'});
     var res = await http.post(
         url, headers: {"Accept": "application/json"},
+=======
+  getPostToCart() async {
+    String Url = "http://jdpoolswebservice.com/spintest/addItemToCart.php";
+    var res = await http.post(
+        Uri.encodeFull(Url), headers: {"Accept": "application/json"},
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
         body: {
           "userid": userId,
           "id": widget.product.id.toString(),
           "title": widget.product.title.toString(),
           "price": widget.product.price.toString(),
           "qty": qty.toString(),
+<<<<<<< HEAD
           "cart_id":widget.product.product_id.toString() ,
         }
     );
@@ -64,6 +77,14 @@ class _Body extends State<Body> {
     qty = widget.item.toInt();
     super.initState();
   }
+=======
+        }
+    );
+    var resBody = json.decode(res.body);
+    print(resBody);
+  }
+
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
   @override
   Widget build(BuildContext context) {
 
@@ -86,11 +107,17 @@ class _Body extends State<Body> {
                         padding:
                         EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
                       child: Row(
+<<<<<<< HEAD
 
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                         // MyStatefulWidget(),
                         // Spacer(),
+=======
+                        children: [
+                        MyStatefulWidget(),
+                        Spacer(),
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
                         RoundedIconBtn(
                           icon: Icons.remove,
                           press: () {
@@ -143,9 +170,13 @@ class _Body extends State<Body> {
                                   // print(userId);
 
                                   getPostToCart();
+<<<<<<< HEAD
                                   if(widget.product.product_id.toString() != "0")
                                   Navigator.of(this.context).pop();
                                   Navigator.of(this.context).pop();
+=======
+                                  Navigator.of(context).canPop();
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
                                   Navigator.pushNamed(context, CartScreen.routeName);
                                 }else{
                                   Navigator.of(context).pushNamed( SignInScreen.routeName);
@@ -172,7 +203,11 @@ class _Body extends State<Body> {
           ),
 
         ),
+<<<<<<< HEAD
          // new PopularProducts(),
+=======
+         new PopularProducts(),
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
         SizedBox(height: SizeConfig.screenHeight * 0.02),
       ],
     );

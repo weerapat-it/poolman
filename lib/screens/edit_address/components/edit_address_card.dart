@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:JDPoolsApplication/screens/edit_address/models/Cart.dart';
 
 // import 'package:JDPoolsApplication/screens/payment/payment_card_page_detail.dart';
@@ -6,6 +7,14 @@ import 'package:JDPoolsApplication/screens/quality_page/quality_page_screen.dart
 import 'package:flutter_svg/svg.dart';
 import '../../../../constants.dart';
 import '../../../../size_config.dart';
+=======
+import 'package:JDPoolsApplication/screens/history_payment/models/Cart.dart';
+
+import 'package:JDPoolsApplication/screens/payment/payment_card_page_detail.dart';
+import 'package:JDPoolsApplication/screens/quality_page/quality_page_screen.dart';
+import '../../../constants.dart';
+import '../../../size_config.dart';
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
 
 class CartCard extends StatelessWidget {
   const CartCard({
@@ -17,6 +26,7 @@ class CartCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     return   Container(
         decoration: BoxDecoration(
         color:Colors.white,
@@ -50,6 +60,21 @@ class CartCard extends StatelessWidget {
       //         // file: _image,
       //       ),
       // ));
+=======
+    return   GestureDetector(
+        onTap: () {
+      Navigator.of(context).canPop();
+      // Navigator.of(context).pushNamedAndRemoveUntil( QualityPageScreen.routeName, (Route<dynamic> route) => false,arguments: PoolDataDetailsArguments(value:cart.product.spin_id.toString()));
+      Navigator.push(context, MaterialPageRoute(
+        builder: (context) =>
+            paymentDetailPage(
+              voucher:cart.product.voucher_id.toString(),
+              payment:cart.product.payment_history_id.toString(),
+              status:cart.product.status.toString(),
+              // file: _image,
+            ),
+      ));
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
         },
 
     child:Row(
@@ -60,11 +85,19 @@ class CartCard extends StatelessWidget {
             aspectRatio: 0.88,
             child: Container(
               padding: EdgeInsets.all(getProportionateScreenWidth(10)),
+<<<<<<< HEAD
 
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: SvgPicture.asset(cart.product.images[0]),
               ),
+=======
+              decoration: BoxDecoration(
+                color: Color(0xFFF5F6F9),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Image.asset(cart.product.images[0]),
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
             ),
           ),
         ),
@@ -73,6 +106,7 @@ class CartCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
+<<<<<<< HEAD
               cart.product.user_Tax.toString()!=null ||cart.product.user_Tax.toString()!="null"?cart.product.user_Tax.toString():"",
               style: TextStyle(color:kPrimaryColor2, fontSize: 16),
               maxLines: 2,
@@ -132,14 +166,50 @@ class CartCard extends StatelessWidget {
             //   ],
             // ),
 
+=======
+              cart.product.price.toString(),
+              style: TextStyle(color:kPrimaryColor2, fontSize: 16),
+              maxLines: 2,
+            ),
+            SizedBox(height: 10),
+            Text.rich(
+              TextSpan(
+                text: "Status : ${cart.product.status}",
+                style: TextStyle(
+                    fontWeight: FontWeight.w600, color: Colors.black),
+                // children: [
+                //   TextSpan(
+                //       text: " x${cart.numOfItem}",
+                //       style: Theme.of(context).textTheme.bodyText1),
+                // ],
+              ),
+
+            ),
+            Text.rich(
+              TextSpan(
+                text: "date : ${cart.product.datetime}",
+                style: TextStyle(
+                    fontWeight: FontWeight.w600, color: Colors.black),
+                // children: [
+                //   TextSpan(
+                //       text: " x${cart.numOfItem}",
+                //       style: Theme.of(context).textTheme.bodyText1),
+                // ],
+              ),
+
+            ),
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
 
           ],
         )
       ],
     ),
+<<<<<<< HEAD
     ),
         ),
     ),
+=======
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
     );
   }
 }

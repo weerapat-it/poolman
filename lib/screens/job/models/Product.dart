@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 
 class Product {
+<<<<<<< HEAD
   final int job_id,job_list_id;
   final String title, date,name,tel,address;
   final List<String> images;
@@ -17,6 +18,24 @@ class Product {
     @required this.name,
     @required this.tel,
     @required this.address,
+=======
+  final int history_id,spin_id;
+  final String title, description;
+  final List<String> images;
+  final double  width,height,depth;
+
+
+  Product({
+    @required this.history_id,
+    @required this.spin_id,
+    @required this.images,
+
+    @required this.title,
+    @required this.width,
+    @required this.height,
+    @required this.depth,
+    @required this.description,
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
   });
 
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:JDPoolsApplication/models/Cart.dart';
 import 'package:JDPoolsApplication/enums.dart';
 import 'package:JDPoolsApplication/components/coustom_bottom_nav_bar.dart';
+<<<<<<< HEAD
 import 'package:flutter_svg/svg.dart';
 import '../../constants.dart';
 import '../../size_config.dart';
@@ -171,6 +172,31 @@ class jobScreen extends StatelessWidget {
         ),
 
         ),
+=======
+import '../../constants.dart';
+import 'components/body.dart';
+import 'components/check_out_card.dart';
+
+class historyScreen extends StatelessWidget {
+  static String routeName = "/history";
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: kwhite,
+      child: Scaffold(
+        appBar: buildAppBar(context),
+        backgroundColor: kwhite,
+        body: Stack(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(bottom: 80.0),
+              child: Body(),
+            ),
+            bottomBar(),
+          ],
+        ),
+      ),
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
     );
   }
 
@@ -196,7 +222,11 @@ Widget bottomBar() {
       title: Column(
         children: [
           Text(
+<<<<<<< HEAD
             "My Job",style: TextStyle(color: kPrimaryColor)
+=======
+            "My history",style: TextStyle(color: kPrimaryColor)
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
 
           ),
           // Text(

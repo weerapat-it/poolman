@@ -1,15 +1,26 @@
 import 'package:flutter/material.dart';
 
 
+<<<<<<< HEAD
 class ProductQuality {
   final int id;
+=======
+class Product {
+  final int id,product_id;
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
   final String title, description;
   final List<String> images;
   final int  price;
 
 
+<<<<<<< HEAD
   ProductQuality({
     @required this.id,
+=======
+  Product({
+    @required this.id,
+    @required this.product_id,
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
     @required this.images,
 
     @required this.title,
@@ -20,10 +31,17 @@ class ProductQuality {
 }
 
 
+<<<<<<< HEAD
 List<ProductQuality> demoProductspop = [];
 // Our demo Products
 
 List<ProductQuality> demoProductsQuality = [
+=======
+List<Product> demoProductspop = [];
+// Our demo Products
+
+List<Product> demoProducts = [
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
   // Product(
   //   id: 1,
   //   images: [

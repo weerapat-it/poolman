@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:JDPoolsApplication/models/Cart.dart';
 import 'package:JDPoolsApplication/enums.dart';
 import 'package:JDPoolsApplication/components/coustom_bottom_nav_bar.dart';
+<<<<<<< HEAD
 import 'package:flutter_session/flutter_session.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../constants.dart';
@@ -177,6 +178,33 @@ class checkListScreen extends StatelessWidget {
         ],
       ),
 
+=======
+import '../../constants.dart';
+import 'components/body.dart';
+import 'components/check_out_card.dart';
+
+class jobListScreen extends StatelessWidget {
+  static String routeName = "/job_list";
+  @override
+  Widget build(BuildContext context) {
+    final cusIdArguments agrs =
+        ModalRoute.of(context).settings.arguments;
+    return Container(
+      color: kwhite,
+      child: Scaffold(
+        appBar: buildAppBar(context),
+        backgroundColor: kwhite,
+        body: Stack(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(bottom: 80.0),
+              child: Body(value:agrs.value),
+            ),
+            bottomBar(),
+          ],
+        ),
+      ),
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
     );
   }
 
@@ -202,7 +230,11 @@ Widget bottomBar() {
       title: Column(
         children: [
           Text(
+<<<<<<< HEAD
             "Poolcare Report",style: TextStyle(color: kPrimaryColor)
+=======
+            "My history",style: TextStyle(color: kPrimaryColor)
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
 
           ),
           // Text(
@@ -214,10 +246,17 @@ Widget bottomBar() {
     );
   }
 }
+<<<<<<< HEAD
 class jobListArguments {
   final String value;
   final String value2;
 
   jobListArguments(this.value, this.value2);
+=======
+class cusIdArguments {
+  final String value;
+
+  cusIdArguments({@required this.value});
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
 
 }

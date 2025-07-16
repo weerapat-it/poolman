@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:JDPoolsApplication/screens/check_list/models/Cart.dart';
+=======
+import 'package:JDPoolsApplication/screens/job_list/models/Cart.dart';
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
 
 import 'package:JDPoolsApplication/screens/quality_page/quality_page_screen.dart';
 import '../../../constants.dart';

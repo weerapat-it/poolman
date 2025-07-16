@@ -4,8 +4,14 @@ import 'Product.dart';
 
 class Cart {
   final Product product;
+<<<<<<< HEAD
 
   Cart({@required this.product});
+=======
+  final int numOfItem;
+
+  Cart({@required this.product, @required this.numOfItem});
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
 }
 
 // Demo data for our cart

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:JDPoolsApplication/utils/uidata.dart';
+=======
+import 'package:flutter_uikit/utils/uidata.dart';
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
 
 class CustomFloat extends StatelessWidget {
   final IconData icon;

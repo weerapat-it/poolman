@@ -3,11 +3,19 @@ import 'package:JDPoolsApplication/components/custom_surfix_icon.dart';
 import 'package:JDPoolsApplication/components/default_button.dart';
 import 'package:JDPoolsApplication/components/form_error.dart';
 import 'package:JDPoolsApplication/screens/otp/otp_screen.dart';
+<<<<<<< HEAD
 import '../../../../screens/bloc/bloc.dart';
 import '../../../../screens/page/Gmap_page.dart';
 import '../../../../screens/page/main_gmap.dart';
 import '../../../../constants.dart';
 import '../../../../size_config.dart';
+=======
+import '../../../screens/bloc/bloc.dart';
+import '../../../screens/page/Gmap_page.dart';
+import '../../../screens/page/main_gmap.dart';
+import '../../../constants.dart';
+import '../../../size_config.dart';
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
 // import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
@@ -35,6 +43,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
   var txt = TextEditingController();
   var tokenIds,userId;
   List data2 = [];
+<<<<<<< HEAD
   var id;
   String userFirstname,userLastname,userTel,userAddress,userAddress2,taxId;
   String password;
@@ -75,6 +84,10 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
       });
 
     });
+=======
+  void initState() {
+    // InsertMethod();
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
   }
   Future check()  async {
     tokenIds = "${await FlutterSession().get("tokenId")}";
@@ -87,18 +100,33 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
     return data2;
   }
   InsertMethod()async{
+<<<<<<< HEAD
     var url = Uri.https('jdpoolswebservice.com', '/spintest/update_profile.php', {'q': '{http}'});
     // String Url = "http://jdpoolswebservice.com/spintest/update_profile.php";
     var res = await http.post(url,headers:{"Accept" : "application/json"},
+=======
+    String Url = "http://jdpoolswebservice.com/spintest/register.php";
+    var res = await http.post(Uri.encodeFull(Url),headers:{"Accept" : "application/json"},
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
         body: {
           // "customer":_dropDownValue,
           "user_ID" : userId !=null?userId:"",
           "tokenId" : tokenIds !=null?tokenIds:"",
+<<<<<<< HEAD
           "firstName" : userFirstname !=null?userFirstname:"",
           "lastName" : userLastname !=null?userLastname:"",
           "phoneNumber" : userTel !=null?userTel:"",
           "address" : userAddress !=null?userAddress:"",
           "address2" : myController4.text !=null?myController4.text:"",
+=======
+          "username" : widget.username !=null?widget.username:"",
+          "password" : widget.password !=null?widget.password:"",
+          "firstName" : firstName !=null?firstName:"",
+          "lastName" : lastName !=null?lastName:"",
+          "phoneNumber" : phoneNumber !=null?phoneNumber:"",
+          "address" : address !=null?address:"",
+          "address2" : txt.text !=null?txt.text:"",
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
         }
     );
     var resBody = json.decode(res.body);
@@ -140,12 +168,22 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
             maxLines: 1,
             onTap: () async {
               final result2 = await  Navigator.pushNamed(context, MyAppGmap.routeName);
+<<<<<<< HEAD
               myController4.text = result2;
             },
             controller: myController4,
             decoration: InputDecoration(
                 prefixIcon:Icon(Icons.map),
 
+=======
+              txt.text = result2;
+            },
+            controller: txt,
+            decoration: InputDecoration(
+                prefixIcon:Icon(Icons.map),
+
+                //hintText: 'CoNstr@seña',
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
                 border:OutlineInputBorder(
                     borderSide: BorderSide(
                         color:Colors.white
@@ -167,6 +205,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
                     userId = result[1];
 
                     InsertMethod();
+<<<<<<< HEAD
                     FlutterSession().set("userFirstname","" );
                     FlutterSession().set("userLastname","");
                     FlutterSession().set("userTel","");
@@ -177,6 +216,8 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
                     FlutterSession().set("userTel",userTel);
                     FlutterSession().set("userAddress",userAddress);
                     FlutterSession().set("userAddress2",userAddress2);
+=======
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
                   });
                 });
                 Navigator.pushNamed(context, SignInScreen.routeName);
@@ -191,10 +232,17 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   TextFormField buildAddressFormField() {
     return TextFormField(
+<<<<<<< HEAD
       onSaved: (newValue) => userAddress = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
           userAddress = value;
+=======
+      onSaved: (newValue) => address = newValue,
+      onChanged: (value) {
+        if (value.isNotEmpty) {
+          address = value;
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
           removeError(error: kAddressNullError);
         }
         return null;
@@ -206,8 +254,11 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
         }
         return null;
       },
+<<<<<<< HEAD
 
       controller: myController3..text,
+=======
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
       decoration: InputDecoration(
         labelText: "Address",
         hintText: "Enter your phone address",
@@ -215,7 +266,11 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon:
+<<<<<<< HEAD
         CustomSurffixIcon(svgIcon: "assets/icons/Location point.svg"),
+=======
+            CustomSurffixIcon(svgIcon: "assets/icons/Location point.svg"),
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
       ),
     );
   }
@@ -223,10 +278,17 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
   TextFormField buildPhoneNumberFormField() {
     return TextFormField(
       keyboardType: TextInputType.phone,
+<<<<<<< HEAD
       onSaved: (newValue) => userTel = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
           userTel = value;
+=======
+      onSaved: (newValue) => phoneNumber = newValue,
+      onChanged: (value) {
+        if (value.isNotEmpty) {
+          phoneNumber = value;
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
           removeError(error: kPhoneNumberNullError);
         }
         return null;
@@ -238,8 +300,11 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
         }
         return null;
       },
+<<<<<<< HEAD
 
       controller: myController2..text,
+=======
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
       decoration: InputDecoration(
         labelText: "Phone Number",
         hintText: "Enter your phone number",
@@ -253,6 +318,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   TextFormField buildLastNameFormField() {
     return TextFormField(
+<<<<<<< HEAD
       onSaved: (newValue) => userLastname = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
@@ -262,6 +328,15 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
       },
 
       controller: myController1..text,
+=======
+      onSaved: (newValue) => lastName = newValue,
+      onChanged: (value) {
+        if (value.isNotEmpty) {
+          lastName = value;
+        }
+        return null;
+      },
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
       decoration: InputDecoration(
         labelText: "Last Name",
         hintText: "Enter your last name",
@@ -275,10 +350,17 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   TextFormField buildFirstNameFormField() {
     return TextFormField(
+<<<<<<< HEAD
       onSaved: (newValue) => userFirstname = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
           userFirstname = value;
+=======
+      onSaved: (newValue) => firstName = newValue,
+      onChanged: (value) {
+        if (value.isNotEmpty) {
+          firstName = value;
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
           removeError(error: kNamelNullError);
         }
         return null;
@@ -290,8 +372,11 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
         }
         return null;
       },
+<<<<<<< HEAD
 
       controller: myController..text,
+=======
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
       decoration: InputDecoration(
         labelText: "First Name",
         hintText: "Enter your first name",

@@ -24,10 +24,16 @@ class _BodyState extends State<Body> {
   getListImage() async {
 
     userId = "${await FlutterSession().get("userId")}";
+<<<<<<< HEAD
     var url = Uri.https('jdpoolswebservice.com', '/spintest/voucher.php', {'q': '{http}'});
     // String Url = "http://jdpoolswebservice.com/spintest/voucher.php";
     var res = await http.post(
         url, headers: {"Accept": "application/json"},
+=======
+    String Url = "http://jdpoolswebservice.com/spintest/voucher.php";
+    var res = await http.post(
+        Uri.encodeFull(Url), headers: {"Accept": "application/json"},
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
         body: {
           "userid":userId,
 

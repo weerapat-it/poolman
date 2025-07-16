@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:JDPoolsApplication/components/custom_surfix_icon.dart';
 import 'package:JDPoolsApplication/components/default_button.dart';
 import 'package:JDPoolsApplication/components/form_error.dart';
+<<<<<<< HEAD
 import 'package:JDPoolsApplication/screens/cart/otp/otp_screen.dart';
 import 'package:geolocator/geolocator.dart';
 import '../../../../screens/bloc/bloc.dart';
@@ -9,11 +10,23 @@ import '../../../../screens/page/Gmap_page.dart';
 import '../../../../screens/page/main_gmap.dart';
 import '../../../../constants.dart';
 import '../../../../size_config.dart';
+=======
+import 'package:JDPoolsApplication/screens/otp/otp_screen.dart';
+import '../../../screens/bloc/bloc.dart';
+import '../../../screens/page/Gmap_page.dart';
+import '../../../screens/page/main_gmap.dart';
+import '../../../constants.dart';
+import '../../../size_config.dart';
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
 // import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
+<<<<<<< HEAD
 import 'package:flutter_session/flutter_session.dart';
+=======
+
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
 import 'package:JDPoolsApplication/screens/sign_in/sign_in_screen.dart';
 class CompleteProfileForm extends StatefulWidget {
   final String username;
@@ -32,6 +45,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
   String phoneNumber;
   String address;
   String data;
+<<<<<<< HEAD
 
   List data2 = [];
   var txt = TextEditingController();
@@ -74,6 +88,19 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
           // "customer":_dropDownValue,
           "user_ID" : userId !=null?userId:"",
           "tokenId" : tokenIds !=null?tokenIds:"",
+=======
+  var txt = TextEditingController();
+
+  void initState() {
+    // InsertMethod();
+  }
+
+  InsertMethod()async{
+    String Url = "http://jdpoolswebservice.com/spintest/register.php";
+    var res = await http.post(Uri.encodeFull(Url),headers:{"Accept" : "application/json"},
+        body: {
+          // "customer":_dropDownValue,
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
           "username" : widget.username !=null?widget.username:"",
           "password" : widget.password !=null?widget.password:"",
           "firstName" : firstName !=null?firstName:"",
@@ -81,7 +108,10 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
           "phoneNumber" : phoneNumber !=null?phoneNumber:"",
           "address" : address !=null?address:"",
           "address2" : txt.text !=null?txt.text:"",
+<<<<<<< HEAD
           "latlong" : locationMessage,
+=======
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
         }
     );
     var resBody = json.decode(res.body);
@@ -143,6 +173,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
             text: "continue",
             press: () {
               if (_formKey.currentState.validate()) {
+<<<<<<< HEAD
 
                 check().then((result) {
                   // print("result: $result");
@@ -155,6 +186,12 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
                 });
                  Navigator.pushNamed(context, SignInScreen.routeName);
                 // Navigator.pushNamed(context, OtpCartScreen.routeName,arguments: OtpScreenArguments(otp:phoneNumber));
+=======
+                InsertMethod();
+
+                Navigator.pushNamed(context, SignInScreen.routeName);
+                // Navigator.pushNamed(context, OtpScreen.routeName,arguments: OtpScreenArguments(otp:phoneNumber));
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
               }
             },
           ),

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import 'package:JDPoolsApplication/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
@@ -9,6 +10,16 @@ import 'package:JDPoolsApplication/screens/payment/payment_success_page.dart';
 
 class CreditCardPage extends StatelessWidget {
   static String routeName = "/creditcard";
+=======
+import 'package:flutter/material.dart';
+import 'package:flutter_masked_text/flutter_masked_text.dart';
+import 'package:flutter_uikit/logic/bloc/credit_card_bloc.dart';
+import 'package:flutter_uikit/ui/widgets/profile_tile.dart';
+import 'package:flutter_uikit/utils/uidata.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+class CreditCardPage extends StatelessWidget {
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
   BuildContext _context;
   CreditCardBloc cardBloc;
   MaskedTextController ccMask =
@@ -199,6 +210,7 @@ class CreditCardPage extends StatelessWidget {
             shape: StadiumBorder(),
             gradient: LinearGradient(colors: UIData.kitGradients)),
         child: FloatingActionButton.extended(
+<<<<<<< HEAD
           onPressed: () {
 
             // Navigator.of(_context).pushNamed( PaymentSuccessPage.routeName);
@@ -208,6 +220,14 @@ class CreditCardPage extends StatelessWidget {
           //   FontAwesomeIcons.amazonPay,
           //   color: Colors.white,
           // ),
+=======
+          onPressed: () {},
+          backgroundColor: Colors.transparent,
+          icon: Icon(
+            FontAwesomeIcons.amazonPay,
+            color: Colors.white,
+          ),
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
           label: Text(
             "Continue",
             style: TextStyle(color: Colors.white),
@@ -220,11 +240,18 @@ class CreditCardPage extends StatelessWidget {
     _context = context;
     cardBloc = CreditCardBloc();
     return Scaffold(
+<<<<<<< HEAD
 
       appBar: AppBar(
         backgroundColor: kPrimaryColor2,
         centerTitle: false,
         title: Text("Credit card"),
+=======
+      resizeToAvoidBottomPadding: true,
+      appBar: AppBar(
+        centerTitle: false,
+        title: Text("Credit Card"),
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
       ),
       body: bodyData(),
       floatingActionButton: floatingBar(),

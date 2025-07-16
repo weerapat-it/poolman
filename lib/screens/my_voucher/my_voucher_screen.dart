@@ -5,8 +5,13 @@ import 'package:JDPoolsApplication/components/coustom_bottom_nav_bar.dart';
 import 'components/body.dart';
 import 'components/check_out_card.dart';
 import '../../constants.dart';
+<<<<<<< HEAD
 class myVoucherScreen extends StatelessWidget {
   static String routeName = "/my_voucher";
+=======
+class voucherScreen extends StatelessWidget {
+  static String routeName = "/voucher";
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
   @override
   Widget build(BuildContext context) {
     return Scaffold(

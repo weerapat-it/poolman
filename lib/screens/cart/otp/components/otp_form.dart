@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:JDPoolsApplication/components/default_button.dart';
 import 'package:JDPoolsApplication/size_config.dart';
 
+<<<<<<< HEAD
 // import 'package:flutter_firebase_auth/util/firebase_listenter.dart';
 
 import 'dart:async';
 // import 'package:firebase_auth/firebase_auth.dart';
 import '../../../../constants.dart';
+=======
+// import 'package:firebase_auth/firebase_auth.dart';
+import '../../../constants.dart';
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
 
 class OtpForm extends StatefulWidget {
   final String otp;

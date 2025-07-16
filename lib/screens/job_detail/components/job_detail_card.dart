@@ -1,11 +1,17 @@
+<<<<<<< HEAD
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:JDPoolsApplication/screens/job_detail/models/Cart.dart';
+=======
+import 'package:flutter/material.dart';
+import 'package:JDPoolsApplication/screens/job_list/models/Cart.dart';
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
 
 import 'package:JDPoolsApplication/screens/check_list/check_list_screen.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
+<<<<<<< HEAD
 import 'package:flutter_session/flutter_session.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../constants.dart';
@@ -13,11 +19,17 @@ import '../../../constants.dart';
 import 'package:http/http.dart' as http;
 class CartCard extends StatelessWidget {
    CartCard({
+=======
+
+class CartCard extends StatelessWidget {
+  const CartCard({
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
     Key key,
     @required this.cart,
   }) : super(key: key);
 
   final Cart cart;
+<<<<<<< HEAD
   List jobdetailList = [];
   var userId;
   int index = 0;
@@ -62,12 +74,19 @@ class CartCard extends StatelessWidget {
     });
 
   }
+=======
+
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
   @override
   Widget build(BuildContext context) {
     return   GestureDetector(
         onTap: () {
       // Navigator.of(context).canPop();
+<<<<<<< HEAD
       Navigator.of(context).pushNamed( checkListScreen.routeName,arguments: jobListArguments(cart.product.jobdetail_id.toString(),empname.toString()));
+=======
+      Navigator.of(context).pushNamed( checkListScreen.routeName,arguments: jobListArguments(value:cart.product.job_id.toString()));
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
 
         },
 
@@ -83,7 +102,11 @@ class CartCard extends StatelessWidget {
                 color: Color(0xFFF5F6F9),
                 borderRadius: BorderRadius.circular(15),
               ),
+<<<<<<< HEAD
               // child: Image.asset(cart.product.images[0]),
+=======
+              child: Image.asset(cart.product.images[0]),
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
             ),
           ),
         ),
@@ -131,6 +154,9 @@ class CartCard extends StatelessWidget {
     );
   }
 }
+<<<<<<< HEAD
 Future _getThingsOnStartup() async {
   await Future.delayed(Duration(seconds: 1));
 }
+=======
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc

@@ -2,12 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:JDPoolsApplication/components/custom_surfix_icon.dart';
 import 'package:JDPoolsApplication/components/default_button.dart';
 import 'package:JDPoolsApplication/components/form_error.dart';
+<<<<<<< HEAD
 import 'package:JDPoolsApplication/screens/cart/complete_profile/complete_profile_screen.dart';
 import '../../../../screens/bloc/bloc.dart';
 import '../../../../screens/page/Gmap_page.dart';
 import '../../../../screens/page/main_gmap.dart';
 import '../../../../constants.dart';
 import '../../../../size_config.dart';
+=======
+import 'package:JDPoolsApplication/screens/complete_profile/complete_profile_screen.dart';
+import '../../../screens/bloc/bloc.dart';
+import '../../../screens/page/Gmap_page.dart';
+import '../../../screens/page/main_gmap.dart';
+import '../../../constants.dart';
+import '../../../size_config.dart';
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
 
 
 class SignUpForm extends StatefulWidget {
@@ -76,7 +85,11 @@ class _SignUpFormState extends State<SignUpForm> {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
                 // if all are valid then go to success screen
+<<<<<<< HEAD
                 Navigator.of(context).pushNamed(CompleteProfileCartScreen.routeName,arguments: SignUpArgumentsCart(username:email,password: password));
+=======
+                Navigator.of(context).pushNamed(CompleteProfileScreen.routeName,arguments: SignUpArguments(username:email,password: password));
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
               }
             },
           ),

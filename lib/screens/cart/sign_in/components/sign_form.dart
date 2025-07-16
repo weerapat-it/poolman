@@ -6,24 +6,40 @@ import 'package:JDPoolsApplication/screens/forgot_password/forgot_password_scree
 import 'package:JDPoolsApplication/screens/login_success/login_success_screen.dart';
 import 'package:flutter_session/flutter_session.dart';
 import 'package:JDPoolsApplication/screens/sign_in/sign_in_screen.dart';
+<<<<<<< HEAD
 import '../../../../components/default_button.dart';
 import '../../../../constants.dart';
 import '../../../../size_config.dart';
+=======
+import '../../../components/default_button.dart';
+import '../../../constants.dart';
+import '../../../size_config.dart';
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
+<<<<<<< HEAD
 import 'package:progress_dialog/progress_dialog.dart';
+=======
+
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
 import 'package:JDPoolsApplication/screens/home/home_screen.dart';
 class SignForm extends StatefulWidget {
   @override
   _SignFormState createState() => _SignFormState();
+<<<<<<< HEAD
 
 }
 
 class _SignFormState extends State<SignForm> {
   ProgressDialog pr;
+=======
+}
+
+class _SignFormState extends State<SignForm> {
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
 
   final _formKey = GlobalKey<FormState>();
   String email;
@@ -34,11 +50,18 @@ class _SignFormState extends State<SignForm> {
   String tokenId;
   List data2 = [];
   final List<String> errors = [];
+<<<<<<< HEAD
 
   Future check()  async {
     userId = "${await FlutterSession().get("userId")}";
     tokenIds = "${await FlutterSession().get("tokenId")}";
     status = "${await FlutterSession().get("status")}";
+=======
+  Future check()  async {
+    userId = await FlutterSession().get("userId");
+    tokenIds = await FlutterSession().get("tokenId");
+    status = await FlutterSession().get("status");
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
     data2.add(userId.toString());
     data2.add(tokenIds.toString());
     data2.add(status.toString());
@@ -48,9 +71,14 @@ class _SignFormState extends State<SignForm> {
   }
 
   CheckLoginMethod()async{
+<<<<<<< HEAD
     // String Url = "http://jdpoolswebservice.com/spintest/check_login.php";
     var url = Uri.https('jdpoolswebservice.com', '/spintest/check_login.php', {'q': '{http}'});
     var res = await http.post(url,headers:{"Accept" : "application/json"},
+=======
+    String Url = "http://jdpoolswebservice.com/spintest/check_login.php";
+    var res = await http.post(Uri.encodeFull(Url),headers:{"Accept" : "application/json"},
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
         body: {
           // "customer":_dropDownValue,
           "username" : email !=null?email:"",
@@ -75,6 +103,7 @@ class _SignFormState extends State<SignForm> {
          FlutterSession().set("userPic",data[9]);
          FlutterSession().set("status",data[10]);
          FlutterSession().set("tokenId",data[11]);
+<<<<<<< HEAD
          FlutterSession().set("taxId",data[12]);
          FlutterSession().set("permission",data[13]);
          Future.delayed(Duration(seconds: 3)).then((value) {
@@ -93,6 +122,14 @@ class _SignFormState extends State<SignForm> {
           addError(error: kUsenamePassNullError);
         });
 
+=======
+        Navigator.of(context).pushNamedAndRemoveUntil(
+            LoginSuccessScreen.routeName, (
+            Route<dynamic> route) => false);
+        removeError(error: kUsenamePassNullError);
+      }else{
+        addError(error: kUsenamePassNullError);
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
       }
     });
   }
@@ -110,9 +147,15 @@ class _SignFormState extends State<SignForm> {
         tokenIds = result[1];
         userId = result[0];
       });
+<<<<<<< HEAD
       if(status != '0'&& status != "null"){
         // Navigator.of(context).pushNamedAndRemoveUntil( HomeScreen.routeName, (Route<dynamic> route) => false);
         print(userId);
+=======
+      if(status != '0'&& status != null){
+        Navigator.of(context).pushNamedAndRemoveUntil( HomeScreen.routeName, (Route<dynamic> route) => false);
+        // print(userId);
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
       }else{
 
       }
@@ -136,8 +179,11 @@ class _SignFormState extends State<SignForm> {
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     pr = new ProgressDialog(context, showLogs: true);
     pr.style(message: 'Please wait...');
+=======
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
     if(userId != '' || userId != null) {
       return Form(
         key: _formKey,
@@ -147,6 +193,7 @@ class _SignFormState extends State<SignForm> {
             SizedBox(height: getProportionateScreenHeight(30)),
             buildPasswordFormField(),
             SizedBox(height: getProportionateScreenHeight(30)),
+<<<<<<< HEAD
             // Row(
             //   children: [
             //     Checkbox(
@@ -171,6 +218,32 @@ class _SignFormState extends State<SignForm> {
             //     )
             //   ],
             // ),
+=======
+            Row(
+              children: [
+                Checkbox(
+                  value: remember,
+                  activeColor: kPrimaryColor,
+                  onChanged: (value) {
+                    setState(() {
+                      remember = value;
+                    });
+                  },
+                ),
+                Text("Remember me"),
+                Spacer(),
+                GestureDetector(
+                  onTap: () =>
+                      Navigator.pushNamed(
+                          context, ForgotPasswordScreen.routeName),
+                  child: Text(
+                    "Forgot Password",
+                    style: TextStyle(decoration: TextDecoration.underline),
+                  ),
+                )
+              ],
+            ),
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
             FormError(errors: errors),
             SizedBox(height: getProportionateScreenHeight(20)),
             DefaultButton(
@@ -182,10 +255,14 @@ class _SignFormState extends State<SignForm> {
                   // if all are valid then go to success screen
                   KeyboardUtil.hideKeyboard(context);
                   // Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+<<<<<<< HEAD
                   pr.show();
 
                       CheckLoginMethod();
 
+=======
+                  CheckLoginMethod();
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
                   // if(data == "true") {
                   //   Navigator.of(context).pushNamedAndRemoveUntil(
                   //       LoginSuccessScreen.routeName, (

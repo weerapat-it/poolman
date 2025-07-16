@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:JDPoolsApplication/models/Product.dart';
 
+<<<<<<< HEAD
 import '../../../../constants.dart';
 import '../../../../size_config.dart';
+=======
+import '../../../constants.dart';
+import '../../../size_config.dart';
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
 
 class ProductDescription extends StatelessWidget {
   const ProductDescription({

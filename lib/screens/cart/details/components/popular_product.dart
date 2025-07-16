@@ -4,7 +4,11 @@ import 'package:JDPoolsApplication/models/Product.dart';
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+<<<<<<< HEAD
 import '../../../../size_config.dart';
+=======
+import '../../../size_config.dart';
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
 import 'section_title.dart';
 
 class PopularProducts extends StatefulWidget {
@@ -19,10 +23,16 @@ class _PopularProducts extends State<PopularProducts> {
   List productList = [];
 
   getListImage() async {
+<<<<<<< HEAD
     var url = Uri.https('jdpoolswebservice.com', '/spintest/productList.php', {'q': '{http}'});
     // String Url = "http://jdpoolswebservice.com/spintest/productList.php";
     var res = await http.get(
       url, headers: {"Accept": "application/json"},
+=======
+    String Url = "http://jdpoolswebservice.com/spintest/productList.php";
+    var res = await http.get(
+      Uri.encodeFull(Url), headers: {"Accept": "application/json"},
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
       // body: {
       //   "serial":serial_code,
       //   "item" : _dropDownValue,

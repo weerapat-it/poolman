@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:JDPoolsApplication/components/no_account_text.dart';
 import 'package:JDPoolsApplication/components/socal_card.dart';
+<<<<<<< HEAD
 import '../../../../size_config.dart';
 import 'sign_form.dart';
 import 'package:JDPoolsApplication/screens/cart/sign_up/sign_up_screen.dart';
 
 import '../../../../constants.dart';
+=======
+import '../../../size_config.dart';
+import 'sign_form.dart';
+
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -52,6 +58,7 @@ class Body extends StatelessWidget {
                 //   ],
                 // ),
                 SizedBox(height: getProportionateScreenHeight(20)),
+<<<<<<< HEAD
                 // NoAccountText(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -71,6 +78,9 @@ class Body extends StatelessWidget {
                 ),
               ],
             ),
+=======
+                NoAccountText(),
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
               ],
             ),
           ),

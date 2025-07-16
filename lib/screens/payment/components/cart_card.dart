@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 // import 'package:JDPoolsApplication/screens/payment/models/Cart.dart';
 
 import 'package:JDPoolsApplication/models/Cart.dart';
 import 'package:JDPoolsApplication/screens/cart/details/details_screen.dart';
+=======
+import 'package:JDPoolsApplication/models/Cart.dart';
+
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
@@ -13,6 +18,7 @@ class CartCard extends StatelessWidget {
   }) : super(key: key);
 
   final Cart cart;
+<<<<<<< HEAD
   static String result;
   @override
   Widget build(BuildContext context) {
@@ -29,6 +35,12 @@ class CartCard extends StatelessWidget {
 
     },
     child:Container(
+=======
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
         decoration: BoxDecoration(
         color:Colors.white,
         boxShadow: <BoxShadow>[
@@ -76,7 +88,11 @@ class CartCard extends StatelessWidget {
               TextSpan(
                 text: "${cart.product.price}",
                 style: TextStyle(
+<<<<<<< HEAD
                     fontWeight: FontWeight.w600, color: kPrimaryColor2),
+=======
+                    fontWeight: FontWeight.w600, color: kPrimaryColor),
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
                 children: [
                   TextSpan(
                       text: " x${cart.numOfItem}",
@@ -88,7 +104,10 @@ class CartCard extends StatelessWidget {
         )
       ],
     ),
+<<<<<<< HEAD
     ),
+=======
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
     );
   }
 }

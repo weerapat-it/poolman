@@ -1,12 +1,20 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:JDPoolsApplication/widgets/common_scaffold.dart';
 import 'package:JDPoolsApplication/widgets/profile_tile.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PaymentSuccessPage extends StatefulWidget {
   static String routeName = "/payment_success";
+=======
+import 'package:flutter_uikit/ui/widgets/common_scaffold.dart';
+import 'package:flutter_uikit/ui/widgets/profile_tile.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+class PaymentSuccessPage extends StatefulWidget {
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
   @override
   PaymentSuccessPageState createState() {
     return new PaymentSuccessPageState();
@@ -89,7 +97,11 @@ class PaymentSuccessPageState extends State<PaymentSuccessPage> {
                 ProfileTile(
                   title: "Thank You!",
                   textColor: Colors.purple,
+<<<<<<< HEAD
                   subtitle: "Your transaction is successful",
+=======
+                  subtitle: "Your transaction was successful",
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
                 ),
                 ListTile(
                   title: Text("Date"),

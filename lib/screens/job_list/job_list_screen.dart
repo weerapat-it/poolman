@@ -7,12 +7,19 @@ import '../../constants.dart';
 import 'components/body.dart';
 import 'components/check_out_card.dart';
 
+<<<<<<< HEAD
 class jobListScreen extends StatelessWidget {
   static String routeName = "/job_list";
   @override
   Widget build(BuildContext context) {
     final cusIdArguments agrs =
         ModalRoute.of(context).settings.arguments;
+=======
+class historyScreen extends StatelessWidget {
+  static String routeName = "/history";
+  @override
+  Widget build(BuildContext context) {
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
     return Container(
       color: kwhite,
       child: Scaffold(
@@ -22,9 +29,15 @@ class jobListScreen extends StatelessWidget {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.only(bottom: 80.0),
+<<<<<<< HEAD
               child: Body(value:agrs.value),
             ),
             // bottomBar(),
+=======
+              child: Body(),
+            ),
+            bottomBar(),
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
           ],
         ),
       ),
@@ -53,7 +66,11 @@ Widget bottomBar() {
       title: Column(
         children: [
           Text(
+<<<<<<< HEAD
             "My Job List",style: TextStyle(color: kPrimaryColor)
+=======
+            "My history",style: TextStyle(color: kPrimaryColor)
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
 
           ),
           // Text(
@@ -65,9 +82,12 @@ Widget bottomBar() {
     );
   }
 }
+<<<<<<< HEAD
 class cusIdArguments {
   final String value;
 
   cusIdArguments({@required this.value});
 
 }
+=======
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc

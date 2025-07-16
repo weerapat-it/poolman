@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:JDPoolsApplication/components/rounded_icon_btn.dart';
 import 'package:JDPoolsApplication/models/Product.dart';
 
+<<<<<<< HEAD
 import '../../../../constants.dart';
 import '../../../../size_config.dart';
+=======
+import '../../../constants.dart';
+import '../../../size_config.dart';
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
 
 class ColorDots extends StatefulWidget  {
   const ColorDots({
@@ -136,6 +141,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
 
   }
+<<<<<<< HEAD
 
+=======
+>>>>>>> e067d62dbefff1c1948f027873a98a82c90e12bc
 }
 
