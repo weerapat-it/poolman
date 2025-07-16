@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_uikit/ui/widgets/about_tile.dart';
-import 'package:flutter_uikit/utils/uidata.dart';
+import 'package:JDPoolsApplication/widgets/about_tile.dart';
+import 'package:JDPoolsApplication/utils/uidata.dart';
 
 class CommonDrawer extends StatelessWidget {
   @override

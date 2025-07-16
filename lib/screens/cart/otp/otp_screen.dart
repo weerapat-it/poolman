@@ -3,8 +3,8 @@ import 'package:JDPoolsApplication/size_config.dart';
 
 import 'components/body.dart';
 
-class OtpScreen extends StatelessWidget {
-  static String routeName = "/otp";
+class OtpCartScreen extends StatelessWidget {
+  static String routeName = "/otp_cart";
   @override
   Widget build(BuildContext context) {
     final OtpScreenArguments agrs =

@@ -7,10 +7,12 @@ import '../../constants.dart';
 import 'components/body.dart';
 import 'components/check_out_card.dart';
 
-class historyScreen extends StatelessWidget {
-  static String routeName = "/history";
+class jobListScreen extends StatelessWidget {
+  static String routeName = "/job_list";
   @override
   Widget build(BuildContext context) {
+    final cusIdArguments agrs =
+        ModalRoute.of(context).settings.arguments;
     return Container(
       color: kwhite,
       child: Scaffold(
@@ -20,9 +22,9 @@ class historyScreen extends StatelessWidget {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.only(bottom: 80.0),
-              child: Body(),
+              child: Body(value:agrs.value),
             ),
-            bottomBar(),
+            // bottomBar(),
           ],
         ),
       ),
@@ -51,7 +53,7 @@ Widget bottomBar() {
       title: Column(
         children: [
           Text(
-            "My history",style: TextStyle(color: kPrimaryColor)
+            "My Job List",style: TextStyle(color: kPrimaryColor)
 
           ),
           // Text(
@@ -62,4 +64,10 @@ Widget bottomBar() {
       ),
     );
   }
+}
+class cusIdArguments {
+  final String value;
+
+  cusIdArguments({@required this.value});
+
 }

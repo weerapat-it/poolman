@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 
 
-class Product {
-  final int id,product_id;
+class ProductQuality {
+  final int id;
   final String title, description;
   final List<String> images;
   final int  price;
 
 
-  Product({
+  ProductQuality({
     @required this.id,
-    @required this.product_id,
     @required this.images,
 
     @required this.title,
@@ -21,10 +20,10 @@ class Product {
 }
 
 
-List<Product> demoProductspop = [];
+List<ProductQuality> demoProductspop = [];
 // Our demo Products
 
-List<Product> demoProducts = [
+List<ProductQuality> demoProductsQuality = [
   // Product(
   //   id: 1,
   //   images: [

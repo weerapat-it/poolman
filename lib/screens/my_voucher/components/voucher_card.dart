@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:JDPoolsApplication/screens/voucher/models/Cart.dart';
 
+import 'package:JDPoolsApplication/screens/shop/shop_screen.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
@@ -84,7 +85,9 @@ class CartCard extends StatelessWidget {
                     // if all are valid then go to success screen
                     // Navigator.pushNamed(context, QualityPageScreen.routeName);
                     // Navigator.of(context).pushNamed( CartScreen.routeName);
-                    Navigator.pop(context, '${cart.product.id}');
+                    // Navigator.pop(context, '${cart.product.id}');
+                    Navigator.of(context).pushNamedAndRemoveUntil( shopScreen.routeName, (Route<dynamic> route) => false);
+
                     // Navigator.of(context).pop("${cart.product.id}");
                   },
                   child: cart.product.status == 0?Text(

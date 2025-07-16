@@ -11,12 +11,12 @@ import '../../../constants.dart';
 import 'job_card.dart';
 
 import 'package:flutter_session/flutter_session.dart';
-class Body extends StatefulWidget {
+class BodyHistory extends StatefulWidget {
   @override
-  _BodyState createState() => _BodyState();
+  _BodyHistoryState createState() => _BodyHistoryState();
 }
 
-class _BodyState extends State<Body> {
+class _BodyHistoryState extends State<BodyHistory> {
   var userId;
   String cusname;
   List jobList = [];
@@ -47,7 +47,7 @@ class _BodyState extends State<Body> {
   // }
   getListImage() async {
     userId = "${await FlutterSession().get("userId")}";
-    var url = Uri.https('jdpoolswebservice.com', '/spintest/task_list.php', {'q': '{http}'});
+    var url = Uri.https('jdpoolswebservice.com', '/spintest/task_list_history.php', {'q': '{http}'});
     var res = await http.post(
         url, headers: {"Accept": "application/json"},
         body: {

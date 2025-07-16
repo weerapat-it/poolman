@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:JDPoolsApplication/components/no_account_text.dart';
 import 'package:JDPoolsApplication/components/socal_card.dart';
-import '../../../size_config.dart';
+import '../../../../size_config.dart';
 import 'sign_form.dart';
+import 'package:JDPoolsApplication/screens/cart/sign_up/sign_up_screen.dart';
 
+import '../../../../constants.dart';
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -50,7 +52,25 @@ class Body extends StatelessWidget {
                 //   ],
                 // ),
                 SizedBox(height: getProportionateScreenHeight(20)),
-                NoAccountText(),
+                // NoAccountText(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Don’t have an account? ",
+                  style: TextStyle(fontSize: getProportionateScreenWidth(16)),
+                ),
+                GestureDetector(
+                  onTap: () => Navigator.pushNamed(context, SignUpCartScreen.routeName),
+                  child: Text(
+                    "Sign Up",
+                    style: TextStyle(
+                        fontSize: getProportionateScreenWidth(16),
+                        color: kPrimaryColor2),
+                  ),
+                ),
+              ],
+            ),
               ],
             ),
           ),

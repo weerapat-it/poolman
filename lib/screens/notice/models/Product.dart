@@ -3,18 +3,20 @@ import 'package:flutter/material.dart';
 
 class Product {
   final int id;
-  final String title, description;
-  final List<String> images;
-  final int  price;
+  final String title, detail;
+
+  final int  type,read,voucher,status;
 
 
   Product({
     @required this.id,
-    @required this.images,
 
     @required this.title,
-    @required this.price,
-    @required this.description,
+    @required this.detail,
+    @required this.type,
+    @required this.read,
+    @required this.voucher,
+    @required this.status,
   });
 
 }

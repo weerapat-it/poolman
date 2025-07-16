@@ -1,11 +1,14 @@
+import 'package:JDPoolsApplication/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
-import 'package:flutter_uikit/logic/bloc/credit_card_bloc.dart';
-import 'package:flutter_uikit/ui/widgets/profile_tile.dart';
-import 'package:flutter_uikit/utils/uidata.dart';
+import 'package:JDPoolsApplication/logic/bloc/credit_card_bloc.dart';
+import 'package:JDPoolsApplication/widgets/profile_tile.dart';
+import 'package:JDPoolsApplication/utils/uidata.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:JDPoolsApplication/screens/payment/payment_success_page.dart';
 
 class CreditCardPage extends StatelessWidget {
+  static String routeName = "/creditcard";
   BuildContext _context;
   CreditCardBloc cardBloc;
   MaskedTextController ccMask =
@@ -196,12 +199,15 @@ class CreditCardPage extends StatelessWidget {
             shape: StadiumBorder(),
             gradient: LinearGradient(colors: UIData.kitGradients)),
         child: FloatingActionButton.extended(
-          onPressed: () {},
+          onPressed: () {
+
+            // Navigator.of(_context).pushNamed( PaymentSuccessPage.routeName);
+          },
           backgroundColor: Colors.transparent,
-          icon: Icon(
-            FontAwesomeIcons.amazonPay,
-            color: Colors.white,
-          ),
+          // icon: Icon(
+          //   FontAwesomeIcons.amazonPay,
+          //   color: Colors.white,
+          // ),
           label: Text(
             "Continue",
             style: TextStyle(color: Colors.white),
@@ -214,10 +220,11 @@ class CreditCardPage extends StatelessWidget {
     _context = context;
     cardBloc = CreditCardBloc();
     return Scaffold(
-      resizeToAvoidBottomPadding: true,
+
       appBar: AppBar(
+        backgroundColor: kPrimaryColor2,
         centerTitle: false,
-        title: Text("Credit Card"),
+        title: Text("Credit card"),
       ),
       body: bodyData(),
       floatingActionButton: floatingBar(),

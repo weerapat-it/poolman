@@ -14,7 +14,7 @@ class ExitConfirmationDialog extends StatelessWidget {
   }
 
   _buildChild(BuildContext context) => Container(
-    height: 350,
+    height: 300,
     decoration: BoxDecoration(
       color: Colors.redAccent,
       shape: BoxShape.rectangle,
@@ -35,23 +35,27 @@ class ExitConfirmationDialog extends StatelessWidget {
           ),
         ),
         SizedBox(height: 24,),
-        Text('Do you want to exit?', style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),),
-        SizedBox(height: 8,),
+        // Text('Do you want join?', style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),),
+        // SizedBox(height: 8,),
         Padding(
           padding: const EdgeInsets.only(right: 16, left: 16),
-          child: Text('If back button is pressed by mistake then click on no to continue.', style: TextStyle(color: Colors.white), textAlign: TextAlign.center,),
+          child: Text('Please select new pic.', style: TextStyle(color: Colors.white), textAlign: TextAlign.center,),
         ),
         SizedBox(height: 24,),
         Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            FlatButton(onPressed: (){
-              Navigator.of(context).pop();
-            }, child: Text('No'),textColor: Colors.white,),
-            SizedBox(width: 8,),
+            // FlatButton(onPressed: (){
+            //   Navigator.of(context).pop();
+            // }, child: Text('No'),textColor: Colors.white,),
             RaisedButton(onPressed: (){
-              return Navigator.of(context).pop(true);
-            }, child: Text('Yes'), color: Colors.white, textColor: Colors.redAccent,)
+              Navigator.of(context).pop();
+              return Navigator.of(context).pop();
+            }, child: Text('Close'), color: Colors.white, textColor: Colors.redAccent,),
+            // SizedBox(width: 8,),
+            // RaisedButton(onPressed: (){
+            //   return Navigator.of(context).pop(true);
+            // }, child: Text('Yes'), color: Colors.white, textColor: Colors.redAccent,)
           ],
         )
       ],

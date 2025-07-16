@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../size_config.dart';
+import '../../../../size_config.dart';
 
 class CustomAppBar extends PreferredSize {
   // final double rating;
@@ -31,7 +31,10 @@ class CustomAppBar extends PreferredSize {
                 padding: EdgeInsets.zero,
                 onPressed: () =>
                     // Navigator.popUntil(context, ModalRoute.withName('/home')),
-                    Navigator.pop(context),
+                    // Navigator.pop(context),
+
+                  Navigator.of(context).pop('1'),
+
                 child: SvgPicture.asset(
                   "assets/icons/Back ICon.svg",
                   height: 15,

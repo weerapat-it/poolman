@@ -7,8 +7,9 @@ import '../../constants.dart';
 import 'components/body.dart';
 import 'components/check_out_card.dart';
 
-class jobListScreen extends StatelessWidget {
-  static String routeName = "/job_list";
+class jobDetailScreen extends StatelessWidget {
+  static String routeName = "/job_detail";
+
   @override
   Widget build(BuildContext context) {
     final cusIdArguments agrs =

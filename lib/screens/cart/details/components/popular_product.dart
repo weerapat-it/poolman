@@ -4,7 +4,7 @@ import 'package:JDPoolsApplication/models/Product.dart';
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../../../size_config.dart';
+import '../../../../size_config.dart';
 import 'section_title.dart';
 
 class PopularProducts extends StatefulWidget {
@@ -19,9 +19,10 @@ class _PopularProducts extends State<PopularProducts> {
   List productList = [];
 
   getListImage() async {
-    String Url = "http://jdpoolswebservice.com/spintest/productList.php";
+    var url = Uri.https('jdpoolswebservice.com', '/spintest/productList.php', {'q': '{http}'});
+    // String Url = "http://jdpoolswebservice.com/spintest/productList.php";
     var res = await http.get(
-      Uri.encodeFull(Url), headers: {"Accept": "application/json"},
+      url, headers: {"Accept": "application/json"},
       // body: {
       //   "serial":serial_code,
       //   "item" : _dropDownValue,

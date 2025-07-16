@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:JDPoolsApplication/screens/job/models/Cart.dart';
+import 'package:JDPoolsApplication/screens/job_list/models/Cart.dart';
 
-import 'package:JDPoolsApplication/screens/history/history_screen.dart';
-import 'package:JDPoolsApplication/screens/job/models/Product.dart';
+import 'package:JDPoolsApplication/screens/job_list/models/Product.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../../../size_config.dart';
-import 'job_card.dart';
+import 'job_list_card.dart';
 
 import 'package:flutter_session/flutter_session.dart';
 class Body extends StatefulWidget {
+  final String value;
+
+  Body({Key key, @required this.value}) : super(key: key);
   @override
   _BodyState createState() => _BodyState();
 }
 
 class _BodyState extends State<Body> {
+
   var userId;
   List jobList = [];
   void initState() {
@@ -45,12 +48,12 @@ class _BodyState extends State<Body> {
   // }
   getListImage() async {
     userId = "${await FlutterSession().get("userId")}";
-    var url = Uri.https('jdpoolswebservice.com', '/spintest/historyList.php', {'q': '{http}'});
+    var url = Uri.https('jdpoolswebservice.com', '/spintest/job_list.php', {'q': '{http}'});
     // String Url = "http://jdpoolswebservice.com/spintest/historyList.php";
     var res = await http.post(
         url, headers: {"Accept": "application/json"},
         body: {
-          "id":userId,
+          "id":widget.value,
 
         }
     );
@@ -66,17 +69,14 @@ class _BodyState extends State<Body> {
 
 
           Product(
-            job_id: int.parse(jobList[x]["task_list_Id"].toString()),
-            job_list_id: int.parse(jobList[x]["cus_ID"].toString()),
+            job_id: int.parse(jobList[x]["checklist_data_Id"].toString()),
             images: [
               "assets/images/doc.png",
             ],
 
-            title: jobList[x]["task_list_Name"].toString(),
-            date: jobList[x]["task_list_Date"].toString(),
-            name: jobList[x]["user_Firstname"].toString(),
-            tel: jobList[x]["user_Tel"].toString(),
-            address: jobList[x]["user_Address1"].toString(),
+            period: jobList[x]["checklist_data_Period"].toString(),
+            start: jobList[x]["checklist_data_Start"].toString(),
+            end: jobList[x]["checklist_data_End"].toString(),
 
           ),
 

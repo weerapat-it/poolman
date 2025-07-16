@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_uikit/ui/widgets/common_drawer.dart';
-import 'package:flutter_uikit/ui/widgets/custom_float.dart';
-import 'package:flutter_uikit/utils/uidata.dart';
+import 'package:JDPoolsApplication/widgets/common_drawer.dart';
+import 'package:JDPoolsApplication/widgets/custom_float.dart';
+import 'package:JDPoolsApplication/utils/uidata.dart';
 
 class CommonScaffold extends StatelessWidget {
   final appTitle;

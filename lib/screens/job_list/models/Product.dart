@@ -2,21 +2,18 @@ import 'package:flutter/material.dart';
 
 
 class Product {
-  final int job_id,job_list_id;
-  final String title, date,name,tel,address;
+  final int job_id;
+  final String period, start,end;
   final List<String> images;
 
 
   Product({
     @required this.job_id,
-    @required this.job_list_id,
     @required this.images,
 
-    @required this.title,
-    @required this.date,
-    @required this.name,
-    @required this.tel,
-    @required this.address,
+    @required this.period,
+    @required this.start,
+    @required this.end,
   });
 
 }

@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'components/body.dart';
 
-import '../../screens/page/Gmap_page.dart';
-class CompleteProfileScreen extends StatelessWidget {
-  static String routeName = "/complete_profile";
+import '../../../screens/page/Gmap_page.dart';
+class CompleteProfileEditScreen extends StatelessWidget {
+  static String routeName = "/complete_profile_edit";
   @override
   Widget build(BuildContext context) {
-    final SignUpArguments agrs =
+    final SignUpArgumentsProfile agrs =
         ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
@@ -17,9 +17,9 @@ class CompleteProfileScreen extends StatelessWidget {
     );
   }
 }
-class SignUpArguments {
+class SignUpArgumentsProfile {
   final String username;
   final String password;
 
-  SignUpArguments({@required this.username,@required this.password});
+  SignUpArgumentsProfile({@required this.username,@required this.password});
 }

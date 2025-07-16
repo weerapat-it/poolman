@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:JDPoolsApplication/screens/history/models/Cart.dart';
+import 'package:JDPoolsApplication/screens/history_payment/models/Cart.dart';
 
+import 'package:JDPoolsApplication/screens/payment/payment_card_page_detail.dart';
 import 'package:JDPoolsApplication/screens/quality_page/quality_page_screen.dart';
+import 'package:flutter_svg/svg.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
@@ -18,8 +20,16 @@ class CartCard extends StatelessWidget {
     return   GestureDetector(
         onTap: () {
       Navigator.of(context).canPop();
-      Navigator.of(context).pushNamedAndRemoveUntil( QualityPageScreen.routeName, (Route<dynamic> route) => false,arguments: PoolDataDetailsArguments(value:cart.product.spin_id.toString()));
-
+      // Navigator.of(context).pushNamedAndRemoveUntil( QualityPageScreen.routeName, (Route<dynamic> route) => false,arguments: PoolDataDetailsArguments(value:cart.product.spin_id.toString()));
+      Navigator.push(context, MaterialPageRoute(
+        builder: (context) =>
+            paymentDetailPage(
+              voucher:cart.product.voucher_id.toString(),
+              payment:cart.product.payment_history_id.toString(),
+              status:cart.product.status.toString(),
+              // file: _image,
+            ),
+      ));
         },
 
     child:Row(
@@ -34,7 +44,11 @@ class CartCard extends StatelessWidget {
                 color: Color(0xFFF5F6F9),
                 borderRadius: BorderRadius.circular(15),
               ),
-              child: Image.asset(cart.product.images[0]),
+              child: SvgPicture.asset(
+                  "assets/icons/bill-svgrepo-com.svg",
+                  color: kPrimaryColor2,
+                  semanticsLabel: 'A red up arrow'
+              )
             ),
           ),
         ),
@@ -43,14 +57,14 @@ class CartCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              cart.product.title,
-              style: TextStyle(color:kPrimaryColor, fontSize: 16),
+              cart.product.price.toString(),
+              style: TextStyle(color:kPrimaryColor2, fontSize: 16),
               maxLines: 2,
             ),
             SizedBox(height: 10),
             Text.rich(
               TextSpan(
-                text: "Width : ${cart.product.width}",
+                text: "Status : ${cart.product.status}",
                 style: TextStyle(
                     fontWeight: FontWeight.w600, color: Colors.black),
                 // children: [
@@ -63,7 +77,7 @@ class CartCard extends StatelessWidget {
             ),
             Text.rich(
               TextSpan(
-                text: "Height : ${cart.product.height}",
+                text: "date : ${cart.product.datetime}",
                 style: TextStyle(
                     fontWeight: FontWeight.w600, color: Colors.black),
                 // children: [
@@ -74,19 +88,7 @@ class CartCard extends StatelessWidget {
               ),
 
             ),
-            Text.rich(
-              TextSpan(
-                text: "Depth : ${cart.product.depth}",
-                style: TextStyle(
-                    fontWeight: FontWeight.w600, color: Colors.black),
-                // children: [
-                //   TextSpan(
-                //       text: " x${cart.numOfItem}",
-                //       style: Theme.of(context).textTheme.bodyText1),
-                // ],
-              ),
 
-            ),
           ],
         )
       ],

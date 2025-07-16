@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:JDPoolsApplication/models/Product.dart';
 import 'package:JDPoolsApplication/screens/details/details_screen.dart';
+import 'package:intl/intl.dart';
 
-import '../constants.dart';
-import '../size_config.dart';
+import '../../../constants.dart';
+import '../../../size_config.dart';
+import '../shop_screen.dart';
 
 class ProductCard extends StatelessWidget {
   static String routeName = "/product_card";
+  static String result;
   const ProductCard({
     Key key,
     this.width = 100,
@@ -33,7 +36,7 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Padding(
-      padding: EdgeInsets.only(left: getProportionateScreenWidth(20),top:getProportionateScreenWidth(20),bottom: getProportionateScreenWidth(20) ),
+      padding: EdgeInsets.only(left: getProportionateScreenWidth(10),right: getProportionateScreenWidth(10),top:getProportionateScreenWidth(10),bottom: getProportionateScreenWidth(10) ),
       child: SizedBox(
         width: getProportionateScreenWidth(width),
         height: getProportionateScreenHeight(140),
@@ -42,36 +45,50 @@ class ProductCard extends StatelessWidget {
 
             Navigator.of(context).canPop();
             showLoaderDialog(context);
-            new Future.delayed(new Duration(seconds: 1), () {
+            new Future.delayed(new Duration(seconds: 1), () async {
               Navigator.pop(context); //pop dialog
-              Navigator.pushNamed(
+
+               result = "${await  Navigator.pushNamed(
                   context,
                   DetailsScreen.routeName,
                   arguments: ProductDetailsArguments(product: product)
 
-              );
+              )}";
+              print("callback"+ result );
+              if(result == '1') {
+                // print("callbackaaa"+ result );
+                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+                    builder: (context) => shopScreen(search: null)), (
+                    route) => false);
+              }
+              // Navigator.pushNamed(
+              //     context,
+              //     DetailsScreen.routeName,
+              //     arguments: ProductDetailsArguments(product: product)
+              //
+              // );
             });
 
           },
           child: Container(
-    decoration: BoxDecoration(
-    color: kwhite,
-    boxShadow: <BoxShadow>[
-    BoxShadow(
-        color: Color(0xFF979797).withOpacity(1),
-    offset: const Offset(0, -2),
-    blurRadius: 8.0),
-    ],
-      borderRadius: BorderRadius.only(
-        bottomLeft: Radius.circular(20),
-        bottomRight: Radius.circular(20),
-        topLeft: Radius.circular(20),
-        topRight: Radius.circular(20),
-      ),
-    ),
+            decoration: BoxDecoration(
+            color: kwhite,
+            boxShadow: <BoxShadow>[
+            BoxShadow(
+                color: Color(0xFF979797).withOpacity(1),
+            offset: const Offset(0, -2),
+            blurRadius: 8.0),
+            ],
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20),
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+            ),
 
     child:Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(1.0),
       child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -97,7 +114,7 @@ class ProductCard extends StatelessWidget {
                   product.title,
                   style: TextStyle(color: Colors.black,
                     fontWeight: FontWeight.w600,
-                    fontSize: getProportionateScreenWidth(8),),
+                    fontSize: getProportionateScreenWidth(10),),
                   textAlign: TextAlign.center,
                   maxLines: 1,
                 ),
@@ -109,19 +126,28 @@ class ProductCard extends StatelessWidget {
                         Text(
                           "Price : ",
                           style: TextStyle(
-                            fontSize: getProportionateScreenWidth(8),
+                            fontSize: getProportionateScreenWidth(10),
 
                             color: Colors.black,
                           ),
                         ),
                         Text(
-                          "฿${product.price}",
+                          "฿${NumberFormat.decimalPattern().format(product.price)}",
                           style: TextStyle(
-                            fontSize: getProportionateScreenWidth(8),
+                            fontSize: getProportionateScreenWidth(10),
                             fontWeight: FontWeight.w600,
-                            color: kPrimaryColor,
+                            color: kPrimaryColor2,
                           ),
                         ),
+                        if(product.qty != 0)
+                          Text(
+                            " x ${NumberFormat.decimalPattern().format(product.qty)}",
+                            style: TextStyle(
+                              fontSize: getProportionateScreenWidth(10),
+                              fontWeight: FontWeight.w600,
+                              color: kPrimaryColor2,
+                            ),
+                          ),
                       ],
                     ),
                     // InkWell(

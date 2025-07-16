@@ -2,22 +2,26 @@ import 'package:flutter/material.dart';
 
 
 class Product {
-  final int history_id,spin_id;
-  final String title, description;
+  final int payment_history_id,voucher_id;
+  final String datetime;
+  final int price,status;
   final List<String> images;
-  final double  width,height,depth;
+  // final double  width,height,depth;
 
 
   Product({
-    @required this.history_id,
-    @required this.spin_id,
+    @required this.payment_history_id,
+    @required this.voucher_id,
+    @required this.price,
+    @required this.status,
+    @required this.datetime,
     @required this.images,
 
-    @required this.title,
-    @required this.width,
-    @required this.height,
-    @required this.depth,
-    @required this.description,
+    // @required this.title,
+    // @required this.width,
+    // @required this.height,
+    // @required this.depth,
+    // @required this.description,
   });
 
 }

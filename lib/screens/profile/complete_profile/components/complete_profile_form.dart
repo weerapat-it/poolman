@@ -3,11 +3,11 @@ import 'package:JDPoolsApplication/components/custom_surfix_icon.dart';
 import 'package:JDPoolsApplication/components/default_button.dart';
 import 'package:JDPoolsApplication/components/form_error.dart';
 import 'package:JDPoolsApplication/screens/otp/otp_screen.dart';
-import '../../../screens/bloc/bloc.dart';
-import '../../../screens/page/Gmap_page.dart';
-import '../../../screens/page/main_gmap.dart';
-import '../../../constants.dart';
-import '../../../size_config.dart';
+import '../../../../screens/bloc/bloc.dart';
+import '../../../../screens/page/Gmap_page.dart';
+import '../../../../screens/page/main_gmap.dart';
+import '../../../../constants.dart';
+import '../../../../size_config.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
@@ -35,8 +35,46 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
   var txt = TextEditingController();
   var tokenIds,userId;
   List data2 = [];
-  void initState() {
-    // InsertMethod();
+  var id;
+  String userFirstname,userLastname,userTel,userAddress,userAddress2,taxId;
+  String password;
+  String conform_password;
+  bool remember = false;
+  TextEditingController myController,myController1,myController2,myController3,myController4,myController5;
+
+  String get str_email => myController.text;
+  String get str_password => myController1.text;
+  String get str_conform_passwordl => myController2.text;
+  Future check2()  async {
+    id = "${await FlutterSession().get("userId")}";
+    userFirstname = "${await FlutterSession().get("userFirstname")}";
+    userLastname = "${await FlutterSession().get("userLastname")}";
+    userTel = "${await FlutterSession().get("userTel")}";
+    userAddress = "${await FlutterSession().get("userAddress")}";
+    userAddress2 = "${await FlutterSession().get("userAddress2")}";
+    taxId = "${await FlutterSession().get("taxId")}";
+    myController = TextEditingController()..text = "${await FlutterSession().get("userFirstname")}";
+    myController1 = TextEditingController()..text = "${await FlutterSession().get("userLastname")}";
+    myController2 = TextEditingController()..text = "${await FlutterSession().get("userTel")}";
+    myController3 = TextEditingController()..text = "${await FlutterSession().get("userAddress")}";
+    myController4 = TextEditingController()..text = "${await FlutterSession().get("userAddress2")}";
+    myController5 = TextEditingController()..text = "${await FlutterSession().get("taxId")}";
+    // print(id+password);
+    return id;
+  }
+  initState() {
+    super.initState();
+    // email = await FlutterSession().get("userEmail");
+    // password = await FlutterSession().get("userPassword");
+    // conform_password = await FlutterSession().get("userPassword");
+    check2().then((result) {
+      print("result: $result");
+      setState(() {
+        id = result;
+
+      });
+
+    });
   }
   Future check()  async {
     tokenIds = "${await FlutterSession().get("tokenId")}";
@@ -49,19 +87,18 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
     return data2;
   }
   InsertMethod()async{
-    String Url = "http://jdpoolswebservice.com/spintest/register.php";
-    var res = await http.post(Uri.encodeFull(Url),headers:{"Accept" : "application/json"},
+    var url = Uri.https('jdpoolswebservice.com', '/spintest/update_profile.php', {'q': '{http}'});
+    // String Url = "http://jdpoolswebservice.com/spintest/update_profile.php";
+    var res = await http.post(url,headers:{"Accept" : "application/json"},
         body: {
           // "customer":_dropDownValue,
           "user_ID" : userId !=null?userId:"",
           "tokenId" : tokenIds !=null?tokenIds:"",
-          "username" : widget.username !=null?widget.username:"",
-          "password" : widget.password !=null?widget.password:"",
-          "firstName" : firstName !=null?firstName:"",
-          "lastName" : lastName !=null?lastName:"",
-          "phoneNumber" : phoneNumber !=null?phoneNumber:"",
-          "address" : address !=null?address:"",
-          "address2" : txt.text !=null?txt.text:"",
+          "firstName" : userFirstname !=null?userFirstname:"",
+          "lastName" : userLastname !=null?userLastname:"",
+          "phoneNumber" : userTel !=null?userTel:"",
+          "address" : userAddress !=null?userAddress:"",
+          "address2" : myController4.text !=null?myController4.text:"",
         }
     );
     var resBody = json.decode(res.body);
@@ -103,13 +140,12 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
             maxLines: 1,
             onTap: () async {
               final result2 = await  Navigator.pushNamed(context, MyAppGmap.routeName);
-              txt.text = result2;
+              myController4.text = result2;
             },
-            controller: txt,
+            controller: myController4,
             decoration: InputDecoration(
                 prefixIcon:Icon(Icons.map),
 
-                //hintText: 'CoNstr@seña',
                 border:OutlineInputBorder(
                     borderSide: BorderSide(
                         color:Colors.white
@@ -131,6 +167,16 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
                     userId = result[1];
 
                     InsertMethod();
+                    FlutterSession().set("userFirstname","" );
+                    FlutterSession().set("userLastname","");
+                    FlutterSession().set("userTel","");
+                    FlutterSession().set("userAddress","");
+                    FlutterSession().set("userAddress2","");
+                    FlutterSession().set("userFirstname",userFirstname );
+                    FlutterSession().set("userLastname",userLastname);
+                    FlutterSession().set("userTel",userTel);
+                    FlutterSession().set("userAddress",userAddress);
+                    FlutterSession().set("userAddress2",userAddress2);
                   });
                 });
                 Navigator.pushNamed(context, SignInScreen.routeName);
@@ -145,10 +191,10 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   TextFormField buildAddressFormField() {
     return TextFormField(
-      onSaved: (newValue) => address = newValue,
+      onSaved: (newValue) => userAddress = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
-          address = value;
+          userAddress = value;
           removeError(error: kAddressNullError);
         }
         return null;
@@ -160,6 +206,8 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
         }
         return null;
       },
+
+      controller: myController3..text,
       decoration: InputDecoration(
         labelText: "Address",
         hintText: "Enter your phone address",
@@ -167,7 +215,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon:
-            CustomSurffixIcon(svgIcon: "assets/icons/Location point.svg"),
+        CustomSurffixIcon(svgIcon: "assets/icons/Location point.svg"),
       ),
     );
   }
@@ -175,10 +223,10 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
   TextFormField buildPhoneNumberFormField() {
     return TextFormField(
       keyboardType: TextInputType.phone,
-      onSaved: (newValue) => phoneNumber = newValue,
+      onSaved: (newValue) => userTel = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
-          phoneNumber = value;
+          userTel = value;
           removeError(error: kPhoneNumberNullError);
         }
         return null;
@@ -190,6 +238,8 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
         }
         return null;
       },
+
+      controller: myController2..text,
       decoration: InputDecoration(
         labelText: "Phone Number",
         hintText: "Enter your phone number",
@@ -203,13 +253,15 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   TextFormField buildLastNameFormField() {
     return TextFormField(
-      onSaved: (newValue) => lastName = newValue,
+      onSaved: (newValue) => userLastname = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
-          lastName = value;
+          userLastname = value;
         }
         return null;
       },
+
+      controller: myController1..text,
       decoration: InputDecoration(
         labelText: "Last Name",
         hintText: "Enter your last name",
@@ -223,10 +275,10 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   TextFormField buildFirstNameFormField() {
     return TextFormField(
-      onSaved: (newValue) => firstName = newValue,
+      onSaved: (newValue) => userFirstname = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
-          firstName = value;
+          userFirstname = value;
           removeError(error: kNamelNullError);
         }
         return null;
@@ -238,6 +290,8 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
         }
         return null;
       },
+
+      controller: myController..text,
       decoration: InputDecoration(
         labelText: "First Name",
         hintText: "Enter your first name",

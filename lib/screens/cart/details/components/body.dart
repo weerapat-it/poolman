@@ -20,8 +20,8 @@ import 'dart:async';
 import 'package:flutter_session/flutter_session.dart';
 class Body extends StatefulWidget {
   final Product product;
-
-  const Body({Key key, @required this.product}) : super(key: key);
+  final int item;
+  const Body({Key key, @required this.product, @required this.item}) : super(key: key);
 
   @override
   _Body createState() => new _Body();
@@ -40,22 +40,30 @@ class _Body extends State<Body> {
     return userId;
   }
   int qty = 1;
+
   getPostToCart() async {
-    String Url = "http://jdpoolswebservice.com/spintest/addItemToCart.php";
+    // String Url = "http://jdpoolswebservice.com/spintest/addItemToCart.php";
+    var url = Uri.https('jdpoolswebservice.com', '/spintest/addItemToCart.php', {'q': '{http}'});
     var res = await http.post(
-        Uri.encodeFull(Url), headers: {"Accept": "application/json"},
+        url, headers: {"Accept": "application/json"},
         body: {
           "userid": userId,
           "id": widget.product.id.toString(),
           "title": widget.product.title.toString(),
           "price": widget.product.price.toString(),
           "qty": qty.toString(),
+          "cart_id":widget.product.product_id.toString() ,
         }
     );
-    var resBody = json.decode(res.body);
-    print(resBody);
+    // var resBody = json.decode(res.body);
+    // print(resBody);
   }
-
+  @override
+  void initState() {
+    // TODO: implement initState
+    qty = widget.item.toInt();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
 
@@ -78,9 +86,11 @@ class _Body extends State<Body> {
                         padding:
                         EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
                       child: Row(
+
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                        MyStatefulWidget(),
-                        Spacer(),
+                        // MyStatefulWidget(),
+                        // Spacer(),
                         RoundedIconBtn(
                           icon: Icons.remove,
                           press: () {
@@ -133,7 +143,9 @@ class _Body extends State<Body> {
                                   // print(userId);
 
                                   getPostToCart();
-                                  Navigator.of(context).canPop();
+                                  if(widget.product.product_id.toString() != "0")
+                                  Navigator.of(this.context).pop();
+                                  Navigator.of(this.context).pop();
                                   Navigator.pushNamed(context, CartScreen.routeName);
                                 }else{
                                   Navigator.of(context).pushNamed( SignInScreen.routeName);
@@ -160,7 +172,7 @@ class _Body extends State<Body> {
           ),
 
         ),
-         new PopularProducts(),
+         // new PopularProducts(),
         SizedBox(height: SizeConfig.screenHeight * 0.02),
       ],
     );

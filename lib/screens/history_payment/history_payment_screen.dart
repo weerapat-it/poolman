@@ -7,8 +7,8 @@ import '../../constants.dart';
 import 'components/body.dart';
 import 'components/check_out_card.dart';
 
-class historyScreen extends StatelessWidget {
-  static String routeName = "/history";
+class historyPaymentScreen extends StatelessWidget {
+  static String routeName = "/history_payment";
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,7 +35,7 @@ Widget bottomBar() {
       const Expanded(
         child: SizedBox(),
       ),
-      BottomBarView(selectedMenu: MenuState.historyScreen),
+      BottomBarView(selectedMenu: MenuState.historyPaymentScreen),
 
     ],
   );
@@ -43,10 +43,15 @@ Widget bottomBar() {
 
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
+      iconTheme: IconThemeData(
+        color: kPrimaryColor, //change your color here
+      ),
+      backgroundColor: kPrimaryColor2,
+      centerTitle: true,
       title: Column(
         children: [
           Text(
-            "My History",
+            "Purchasing history",style: TextStyle(color: kPrimaryColor)
 
           ),
           // Text(

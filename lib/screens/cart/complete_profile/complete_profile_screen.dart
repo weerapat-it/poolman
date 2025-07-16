@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'components/body.dart';
 
-import '../../screens/page/Gmap_page.dart';
-class CompleteProfileScreen extends StatelessWidget {
-  static String routeName = "/complete_profile";
+import '../../../screens/page/Gmap_page.dart';
+class CompleteProfileCartScreen extends StatelessWidget {
+  static String routeName = "/complete_profile_cart";
   @override
   Widget build(BuildContext context) {
-    final SignUpArguments agrs =
+    final SignUpArgumentsCart agrs =
         ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
@@ -17,9 +17,9 @@ class CompleteProfileScreen extends StatelessWidget {
     );
   }
 }
-class SignUpArguments {
+class SignUpArgumentsCart {
   final String username;
   final String password;
 
-  SignUpArguments({@required this.username,@required this.password});
+  SignUpArgumentsCart({@required this.username,@required this.password});
 }

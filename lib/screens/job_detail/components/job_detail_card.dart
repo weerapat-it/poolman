@@ -1,24 +1,73 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:JDPoolsApplication/screens/job_list/models/Cart.dart';
+import 'package:JDPoolsApplication/screens/job_detail/models/Cart.dart';
 
 import 'package:JDPoolsApplication/screens/check_list/check_list_screen.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
+import 'package:flutter_session/flutter_session.dart';
+import 'package:flutter_svg/svg.dart';
+import '../../../constants.dart';
 
+import 'package:http/http.dart' as http;
 class CartCard extends StatelessWidget {
-  const CartCard({
+   CartCard({
     Key key,
     @required this.cart,
   }) : super(key: key);
 
   final Cart cart;
+  List jobdetailList = [];
+  var userId;
+  int index = 0;
+  String userfirst,userlast,empname;
+  getJobDetail() async {
+    userId = "${await FlutterSession().get("userId")}";
+    var url = Uri.https('jdpoolswebservice.com', '/spintest/job_detail.php', {'q': '{http}'});
+    // String Url = "http://jdpoolswebservice.com/spintest/productSearch.php";
+    var res = await http.post(
+        url, headers: {"Accept": "application/json"},
+        body: {
+          "userid":userId,
+          "id":cart.product.jobdetail_id.toString(),
 
+        }
+    );
+    var resBody = json.decode(res.body);
+
+    jobdetailList = resBody;
+
+
+    print(jobdetailList);
+
+
+    if(jobdetailList != null) {
+      userfirst = jobdetailList[index]["user_Firstname"].toString();
+      userlast = jobdetailList[index]["user_Lastname"].toString();
+      empname = userfirst + " " + userlast;
+    }
+  }
+  void initState() {
+    // if(demoProducts != null) {
+    //   demoProducts.clear();
+    // }
+    // if(demoCarts != null) {
+    //   demoCarts.clear();
+    // }
+    // getListImage();
+
+    _getThingsOnStartup().then((value){
+      getJobDetail();
+    });
+
+  }
   @override
   Widget build(BuildContext context) {
     return   GestureDetector(
         onTap: () {
       // Navigator.of(context).canPop();
-      Navigator.of(context).pushNamed( checkListScreen.routeName,arguments: jobListArguments(value:cart.product.job_id.toString()));
+      Navigator.of(context).pushNamed( checkListScreen.routeName,arguments: jobListArguments(cart.product.jobdetail_id.toString(),empname.toString()));
 
         },
 
@@ -34,7 +83,7 @@ class CartCard extends StatelessWidget {
                 color: Color(0xFFF5F6F9),
                 borderRadius: BorderRadius.circular(15),
               ),
-              child: Image.asset(cart.product.images[0]),
+              // child: Image.asset(cart.product.images[0]),
             ),
           ),
         ),
@@ -81,4 +130,7 @@ class CartCard extends StatelessWidget {
     ),
     );
   }
+}
+Future _getThingsOnStartup() async {
+  await Future.delayed(Duration(seconds: 1));
 }

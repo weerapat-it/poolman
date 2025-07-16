@@ -6,17 +6,18 @@ import 'package:JDPoolsApplication/enums.dart';
 import '../../constants.dart';
 import 'components/body.dart';
 
-class ProfileScreen extends StatelessWidget {
-  static String routeName = "/profile";
+class NoticeScreen extends StatelessWidget {
+  static String routeName = "/notice";
   @override
   Widget build(BuildContext context) {
     return Container(
       color: kwhite,
       child: Scaffold(
         appBar: AppBar(
+
           backgroundColor: kPrimaryColor2,
           centerTitle: true,
-          title: Text("Setting",style: TextStyle(color: kPrimaryColor)),
+          title: Text("Notification",style: TextStyle(color: kPrimaryColor)),
         ),
         backgroundColor: kwhite,
         body: Stack(
@@ -35,7 +36,7 @@ Widget bottomBar() {
       const Expanded(
         child: SizedBox(),
       ),
-      BottomBarView(selectedMenu: MenuState.profile),
+      BottomBarView(selectedMenu: MenuState.notice),
     ],
   );
 }

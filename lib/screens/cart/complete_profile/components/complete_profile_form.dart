@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:JDPoolsApplication/components/custom_surfix_icon.dart';
 import 'package:JDPoolsApplication/components/default_button.dart';
 import 'package:JDPoolsApplication/components/form_error.dart';
-import 'package:JDPoolsApplication/screens/otp/otp_screen.dart';
-import '../../../screens/bloc/bloc.dart';
-import '../../../screens/page/Gmap_page.dart';
-import '../../../screens/page/main_gmap.dart';
-import '../../../constants.dart';
-import '../../../size_config.dart';
+import 'package:JDPoolsApplication/screens/cart/otp/otp_screen.dart';
+import 'package:geolocator/geolocator.dart';
+import '../../../../screens/bloc/bloc.dart';
+import '../../../../screens/page/Gmap_page.dart';
+import '../../../../screens/page/main_gmap.dart';
+import '../../../../constants.dart';
+import '../../../../size_config.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
-
+import 'package:flutter_session/flutter_session.dart';
 import 'package:JDPoolsApplication/screens/sign_in/sign_in_screen.dart';
 class CompleteProfileForm extends StatefulWidget {
   final String username;
@@ -31,17 +32,48 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
   String phoneNumber;
   String address;
   String data;
-  var txt = TextEditingController();
 
+  List data2 = [];
+  var txt = TextEditingController();
+  var tokenIds,userId;
+
+  var locationMessage = "";
   void initState() {
     // InsertMethod();
-  }
 
+    getCurrentLocation();
+  }
+  Future check()  async {
+    tokenIds = "${await FlutterSession().get("tokenId")}";
+
+    userId = "${await FlutterSession().get("userId")}";
+    data2.add(tokenIds.toString());
+    data2.add(userId.toString());
+
+    print(data2);
+    return data2;
+  }
+  getCurrentLocation() async {
+
+    var position = await Geolocator.getCurrentPosition(desiredAccuracy:LocationAccuracy.high);
+    var lastPosition = await Geolocator.getLastKnownPosition();
+    print(lastPosition);
+    setState(() {
+      // locationMessage = "{$position.latitude , $position.longitude}";
+
+      locationMessage = lastPosition.toString();
+    });
+    print(locationMessage);
+  }
   InsertMethod()async{
-    String Url = "http://jdpoolswebservice.com/spintest/register.php";
-    var res = await http.post(Uri.encodeFull(Url),headers:{"Accept" : "application/json"},
+    var url = Uri.https('jdpoolswebservice.com', '/spintest/register.php', {'q': '{http}'});
+
+    // String Url = "http://jdpoolswebservice.com/spintest/register.php";
+    var res = await http.post(url,headers:{"Accept" : "application/json"},
         body: {
           // "customer":_dropDownValue,
+          "user_ID" : userId !=null?userId:"",
+          "tokenId" : tokenIds !=null?tokenIds:"",
           "username" : widget.username !=null?widget.username:"",
           "password" : widget.password !=null?widget.password:"",
           "firstName" : firstName !=null?firstName:"",
@@ -49,6 +81,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
           "phoneNumber" : phoneNumber !=null?phoneNumber:"",
           "address" : address !=null?address:"",
           "address2" : txt.text !=null?txt.text:"",
+          "latlong" : locationMessage,
         }
     );
     var resBody = json.decode(res.body);
@@ -110,10 +143,18 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
             text: "continue",
             press: () {
               if (_formKey.currentState.validate()) {
-                InsertMethod();
 
-                Navigator.pushNamed(context, SignInScreen.routeName);
-                // Navigator.pushNamed(context, OtpScreen.routeName,arguments: OtpScreenArguments(otp:phoneNumber));
+                check().then((result) {
+                  // print("result: $result");
+                  setState(() {
+                    tokenIds = result[0];
+                    userId = result[1];
+
+                    InsertMethod();
+                  });
+                });
+                 Navigator.pushNamed(context, SignInScreen.routeName);
+                // Navigator.pushNamed(context, OtpCartScreen.routeName,arguments: OtpScreenArguments(otp:phoneNumber));
               }
             },
           ),

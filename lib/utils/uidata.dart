@@ -74,6 +74,14 @@ class UIData {
     Colors.blueGrey.shade800,
     Colors.black87,
   ];
+
+  static List<Color> jdpools = [
+    // new Color.fromRGBO(103, 218, 255, 1.0),
+    // new Color.fromRGBO(3, 169, 244, 1.0),
+    // new Color.fromRGBO(0, 122, 193, 1.0),
+    Color(0xfff8c199),
+    Color(0xFFf17b26),
+  ];
   static List<Color> kitGradients2 = [
     Colors.cyan.shade600,
     Colors.blue.shade900

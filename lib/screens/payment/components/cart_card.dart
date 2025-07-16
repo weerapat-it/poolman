@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:JDPoolsApplication/models/Cart.dart';
+// import 'package:JDPoolsApplication/screens/payment/models/Cart.dart';
 
+import 'package:JDPoolsApplication/models/Cart.dart';
+import 'package:JDPoolsApplication/screens/cart/details/details_screen.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
@@ -11,10 +13,22 @@ class CartCard extends StatelessWidget {
   }) : super(key: key);
 
   final Cart cart;
-
+  static String result;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GestureDetector(
+        onTap: () {
+
+
+          Navigator.pushNamed(
+              context,
+              DetailsCartScreen.routeName,
+              arguments: ProductDetailsArgumentsCart(product: cart.product,item:cart.numOfItem)
+
+          );
+
+    },
+    child:Container(
         decoration: BoxDecoration(
         color:Colors.white,
         boxShadow: <BoxShadow>[
@@ -62,7 +76,7 @@ class CartCard extends StatelessWidget {
               TextSpan(
                 text: "${cart.product.price}",
                 style: TextStyle(
-                    fontWeight: FontWeight.w600, color: kPrimaryColor),
+                    fontWeight: FontWeight.w600, color: kPrimaryColor2),
                 children: [
                   TextSpan(
                       text: " x${cart.numOfItem}",
@@ -73,6 +87,7 @@ class CartCard extends StatelessWidget {
           ],
         )
       ],
+    ),
     ),
     );
   }

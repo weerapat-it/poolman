@@ -12,7 +12,9 @@ import '../../../size_config.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
-
+import 'package:JDPoolsApplication/screens/edit_address/models/Cart.dart';
+import 'package:JDPoolsApplication/screens/edit_address/models/Product.dart';
+import 'package:JDPoolsApplication/screens/edit_address/components/edit_address_card.dart';
 import 'package:flutter_session/flutter_session.dart';
 import 'package:JDPoolsApplication/screens/sign_in/sign_in_screen.dart';
 class EditForm extends StatefulWidget {
@@ -27,44 +29,50 @@ class EditForm extends StatefulWidget {
 
 class _EditFormState extends State<EditForm> {
   final _formKey = GlobalKey<FormState>();
+  var userId;
+  List addressList = [];
   final List<String> errors = [];
   String firstName;
   String lastName;
   String phoneNumber;
   String address;
   String address2;
+  String tax = "";
   String data;
-  TextEditingController myController,myController1,myController2,myController3,myController4;
+  TextEditingController myController,myController1,myController2,myController4;
+  var txt = TextEditingController();
+  var myController3 = TextEditingController();
+  var Tax = TextEditingController() ;
+
 
   String get str_firstName => myController.text=  "${FlutterSession().get("userFirstname").toString()}";
   String get str_lastName => myController1.text=  "${FlutterSession().get("userLastname").toString()}";
   String get str_phoneNumber => myController2.text=  "${FlutterSession().get("userTel").toString()}";
-  String get str_address => myController3.text=  "${FlutterSession().get("userAddress").toString()}";
-  var txt = TextEditingController();
-  String get str_address2 => txt.text=  "${FlutterSession().get("userAddress2").toString()}";
+  String get str_address => myController3.text.toString();
+  String get str_Tax => Tax.text.toString();
+  String get str_address2 => txt.text.toString();
   void initState() {
     // InsertMethod();
+    getAddress();
+
+    super.initState();
+
   }
 
   InsertMethod()async{
-    String Url = "http://jdpoolswebservice.com/spintest/register.php";
-    var res = await http.post(Uri.encodeFull(Url),headers:{"Accept" : "application/json"},
+    // String Url = "http://jdpoolswebservice.com/spintest/getAddress.php";
+    var url = Uri.https('jdpoolswebservice.com', '/spintest/getAddress.php', {'q': '{http}'});
+    var res = await http.post(url,headers:{"Accept" : "application/json"},
         body: {
-          "id":"${await FlutterSession().get("userId")}",
-          "username" : widget.username !=null?widget.username:"",
-          "password" : widget.password !=null?widget.password:"",
-          "firstName" : str_firstName,
-          "lastName" : str_lastName,
-          "phoneNumber" : str_phoneNumber,
+          "userid":"${await FlutterSession().get("userId")}",
           "address" : str_address,
           "address2" : str_address2,
+          "taxid" : str_Tax,
         }
     );
-    var resBody = json.decode(res.body);
-    print(resBody);
-    setState(() {
-      // data = resBody;
-    });
+    // var resBody = json.decode(res.body);
+    // print(resBody);
+
   }
   void addError({String error}) {
     if (!errors.contains(error))
@@ -79,18 +87,96 @@ class _EditFormState extends State<EditForm> {
         errors.remove(error);
       });
   }
+  getAddress() async {
+    userId = "${await FlutterSession().get("userId")}";
+    var url = Uri.https('jdpoolswebservice.com', '/spintest/getAddress.php', {'q': '{http}'});
+    // String Url = "http://jdpoolswebservice.com/spintest/getAddress.php";
+    var res = await http.post(
+        url, headers: {"Accept": "application/json"},
+        body: {
+          "userid":userId,
 
+        }
+    );
+    var resBody = json.decode(res.body);
+    setState(() {
+      addressList = resBody;
+      if(addressList != null){
+        myController3 = TextEditingController()..text = addressList[0]["user_Address1"] != null?addressList[0]["user_Address1"].toString():"";
+        txt = TextEditingController()..text = addressList[0]["user_Address2"] != null?addressList[0]["user_Address2"].toString():"";
+        Tax = TextEditingController()..text = addressList[0]["user_Tax"] != null?addressList[0]["user_Tax"].toString():"";
+
+      }else{
+        myController3 = TextEditingController()..text = "";
+        txt = TextEditingController()..text = "";
+        Tax = TextEditingController()..text = "";
+
+      }
+      // myController3 = TextEditingController()..text = addressList[0]["user_Address1"] != null?addressList[0]["user_Address1"].toString():"";
+      // txt = TextEditingController()..text = addressList[0]["user_Address2"] != null?addressList[0]["user_Address2"].toString():"";
+
+      // myController3..text = addressList[0]["user_address1"] != null?addressList[0]["user_address1"].toString():"";
+      // txt..text = addressList[0]["user_address2"] != null?addressList[0]["user_address2"].toString():"";
+    });
+    print(addressList);
+    if(addressList != null) {
+      demoProductsAddress = <Product>[
+        for(int x = 0; x < addressList.length; x++)
+
+
+          Product(
+            user_id: int.parse(addressList[x]["user_ID"].toString()),
+            user_Firstname: addressList[x]["user_Firstname"].toString(),
+             images: [
+              "assets/icons/Location point.svg",
+            ],
+            user_Address1: addressList[x]["user_Address1"].toString(),
+            user_Address2: addressList[x]["user_Address2"].toString(),
+            user_Tax: addressList[x]["user_Tax"].toString(),
+          ),
+
+      ];
+      demoCartsAddress = <Cart>[
+        for(int y = 0; y < demoProductsAddress.length; y++)
+          Cart(product: demoProductsAddress[y], numOfItem: 2),
+
+      ];
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
       child: Column(
         children: [
-          buildFirstNameFormField(),
+          // buildFirstNameFormField(),
+          // SizedBox(height: getProportionateScreenHeight(30)),
+          // buildLastNameFormField(),
+          // SizedBox(height: getProportionateScreenHeight(30)),
+          // buildPhoneNumberFormField(),
+          // SizedBox(height: getProportionateScreenHeight(30)),
+          Container(
+            height: 200,
+            child: Padding(
+              padding:
+              EdgeInsets.all(1),
+              child: ListView.builder(
+                itemCount: demoCartsAddress.length,
+                itemBuilder: (context, index) =>
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+
+                      child: CartCard(cart: demoCartsAddress[index]),
+
+                      // ),
+                    ),
+
+              ),
+
+            ),
+          ),
           SizedBox(height: getProportionateScreenHeight(30)),
-          buildLastNameFormField(),
-          SizedBox(height: getProportionateScreenHeight(30)),
-          buildPhoneNumberFormField(),
+          buildTaxFormField(),
           SizedBox(height: getProportionateScreenHeight(30)),
           buildAddressFormField(),
           FormError(errors: errors),
@@ -120,8 +206,18 @@ class _EditFormState extends State<EditForm> {
             press: () {
               if (_formKey.currentState.validate()) {
                 InsertMethod();
-
-                Navigator.pushNamed(context, SignInScreen.routeName);
+                setState(() {
+                  FlutterSession().set("userAddress","");
+                  FlutterSession().set("userAddress2","");
+                  FlutterSession().set("taxId","");
+                  FlutterSession().set("userAddress",str_address.toString());
+                  FlutterSession().set("userAddress2",str_address2.toString());
+                  FlutterSession().set("taxId",str_Tax.toString());
+                  // data = resBody;
+                });
+                // Navigator.pop(context);
+                Navigator.pop(context, "1");
+                // Navigator.pushNamed(context, SignInScreen.routeName);
                 // Navigator.pushNamed(context, OtpScreen.routeName,arguments: OtpScreenArguments(otp:phoneNumber));
               }
             },
@@ -133,11 +229,10 @@ class _EditFormState extends State<EditForm> {
 
   TextFormField buildAddressFormField() {
     return TextFormField(
-      controller: myController3,
       onSaved: (newValue) => address = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
-          myController3.text = value;
+          address = value;
           removeError(error: kAddressNullError);
         }
         return null;
@@ -149,9 +244,11 @@ class _EditFormState extends State<EditForm> {
         }
         return null;
       },
+      controller: myController3..text,
+
       decoration: InputDecoration(
         labelText: "Address",
-        hintText: "Enter your phone address",
+        hintText: "Enter your address",
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -160,7 +257,35 @@ class _EditFormState extends State<EditForm> {
       ),
     );
   }
+  TextFormField buildTaxFormField() {
+    return TextFormField(
+      onSaved: (newValue) => tax = newValue,
+      onChanged: (value) {
+        if (value.isNotEmpty) {
+          tax = value;
+          removeError(error: kAddressNullError);
+        }
+        return null;
+      },
+      validator: (value) {
+        if (value.isEmpty) {
+          addError(error: kAddressNullError);
+          return "";
+        }
+        return null;
+      },
+      controller: Tax..text,
 
+      decoration: InputDecoration(
+        labelText: "Tax id",
+        hintText: "Enter your Tax id",
+        // If  you are using latest version of flutter then lable text and hint text shown like this
+        // if you r using flutter less then 1.20.* then maybe this is not working properly
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+
+      ),
+    );
+  }
   TextFormField buildPhoneNumberFormField() {
     return TextFormField(
       controller: myController2,
